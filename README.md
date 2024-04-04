@@ -3,6 +3,7 @@
 
 Replica of the printf function in the libc library.
 Take these conversions: 
+
 • %c Prints a single character.
 • %s Prints a string (as defined by the common C convention).
 • %p The void * pointer argument has to be printed in hexadecimal format.
