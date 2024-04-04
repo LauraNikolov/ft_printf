@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printint.c                                      :+:      :+:    :+:   */
+/*   ft_printdeci.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lnicolof <lnicolof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 14:43:10 by lnicolof          #+#    #+#             */
-/*   Updated: 2023/12/13 18:25:07 by lnicolof         ###   ########.fr       */
+/*   Created: 2023/11/24 13:04:16 by lnicolof          #+#    #+#             */
+/*   Updated: 2024/04/04 13:31:38 by lnicolof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
-static int	ft_printint_recursive(long nb, int *counter)
+static int	ft_printdeci_recursive(long nb, int *counter)
 {
 	if (nb < 0)
 	{
@@ -22,8 +22,8 @@ static int	ft_printint_recursive(long nb, int *counter)
 	}
 	if (nb > 9)
 	{
-		ft_printint_recursive(nb / 10, counter);
-		ft_printint_recursive(nb % 10, counter);
+		ft_printdeci_recursive(nb / 10, counter);
+		ft_printdeci_recursive(nb % 10, counter);
 	}
 	else
 	{
@@ -34,13 +34,13 @@ static int	ft_printint_recursive(long nb, int *counter)
 	return (*counter);
 }
 
-int	ft_printint(int n)
+int	ft_printdeci(int n)
 {
 	int		counter;
 	long	nb;
 
 	counter = 0;
 	nb = n;
-	ft_printint_recursive(nb, &counter);
+	ft_printdeci_recursive(nb, &counter);
 	return (counter);
 }

@@ -6,11 +6,11 @@
 /*   By: lnicolof <lnicolof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:59:38 by lnicolof          #+#    #+#             */
-/*   Updated: 2023/12/13 18:31:00 by lnicolof         ###   ########.fr       */
+/*   Updated: 2024/04/04 13:32:15 by lnicolof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
 void	ft_putchar(char c)
 {

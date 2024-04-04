@@ -1,32 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printstr.c                                      :+:      :+:    :+:   */
+/*   ft_printchar.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lnicolof <lnicolof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 14:40:25 by lnicolof          #+#    #+#             */
-/*   Updated: 2023/11/24 16:36:18 by lnicolof         ###   ########.fr       */
+/*   Created: 2023/11/23 14:29:17 by lnicolof          #+#    #+#             */
+/*   Updated: 2024/04/04 13:31:33 by lnicolof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
-int	ft_printstr(char *s)
+int	ft_printchar(char c)
 {
-	size_t	i;
-
-	i = 0;
-	if (!s)
-	{
-		write(1, "(null)", 6);
-		i = 6;
-		return (i);
-	}
-	while (s[i])
-	{
-		ft_putchar(s[i]);
-		i++;
-	}
-	return (i);
+	ft_putchar(c);
+	return (1);
 }

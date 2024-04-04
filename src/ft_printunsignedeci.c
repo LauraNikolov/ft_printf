@@ -1,48 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printhexaupp.c                                  :+:      :+:    :+:   */
+/*   ft_printunsignedeci.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lnicolof <lnicolof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 13:30:52 by lnicolof          #+#    #+#             */
-/*   Updated: 2023/12/18 18:47:00 by lnicolof         ###   ########.fr       */
+/*   Created: 2023/11/24 13:11:15 by lnicolof          #+#    #+#             */
+/*   Updated: 2024/04/04 13:32:06 by lnicolof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
-static int	ft_hexaupp_recursive(long nb, int *counter)
+int	ft_printunsignedeci_recursive(unsigned long nb, int *counter)
 {
-	char	*base;
-
-	base = "0123456789ABCDEF";
-	if (nb < 0)
+	if (nb > 9)
 	{
-		ft_putchar('-');
-		(*counter)++;
-		nb *= -1;
-	}
-	if (nb > 15)
-	{
-		ft_hexaupp_recursive(nb / 16, counter);
-		ft_hexaupp_recursive(nb % 16, counter);
+		ft_printunsignedeci_recursive(nb / 10, counter);
+		ft_printunsignedeci_recursive(nb % 10, counter);
 	}
 	else
 	{
-		ft_putchar(base[nb]);
+		nb = nb + '0';
+		ft_putchar(nb);
 		(*counter)++;
 	}
 	return (*counter);
 }
 
-int	ft_printhexaupp(unsigned int n)
+int	ft_printunsigneddeci(unsigned int n)
 {
-	int					counter;
-	unsigned long int	nb;
+	int				counter;
+	unsigned long	nb;
 
 	counter = 0;
 	nb = n;
-	ft_hexaupp_recursive(nb, &counter);
+	ft_printunsignedeci_recursive(nb, &counter);
 	return (counter);
 }

@@ -6,11 +6,11 @@
 /*   By: lnicolof <lnicolof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:15:31 by lnicolof          #+#    #+#             */
-/*   Updated: 2023/12/18 18:07:57 by lnicolof         ###   ########.fr       */
+/*   Updated: 2024/04/04 13:31:42 by lnicolof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 #include <unistd.h>
 
 char	*ft_strchr(const char *s, int c)

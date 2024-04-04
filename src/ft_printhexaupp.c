@@ -1,52 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ptrisnull.c                                     :+:      :+:    :+:   */
+/*   ft_printhexaupp.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lnicolof <lnicolof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 16:25:42 by lnicolof          #+#    #+#             */
-/*   Updated: 2023/12/18 18:12:06 by lnicolof         ###   ########.fr       */
+/*   Created: 2023/11/24 13:30:52 by lnicolof          #+#    #+#             */
+/*   Updated: 2024/04/04 13:31:52 by lnicolof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
-int	ft_printptr(unsigned long long nb)
+static int	ft_hexaupp_recursive(long nb, int *counter)
 {
 	char	*base;
-	int		counter;
 
-	base = "0123456789abcdef";
-	counter = 0;
+	base = "0123456789ABCDEF";
+	if (nb < 0)
+	{
+		ft_putchar('-');
+		(*counter)++;
+		nb *= -1;
+	}
 	if (nb > 15)
 	{
-		counter += ft_printptr(nb / 16);
-		counter += ft_printptr(nb % 16);
+		ft_hexaupp_recursive(nb / 16, counter);
+		ft_hexaupp_recursive(nb % 16, counter);
 	}
 	else
 	{
 		ft_putchar(base[nb]);
-		counter++;
+		(*counter)++;
 	}
-	return (counter);
+	return (*counter);
 }
 
-int	ft_ptrisnull(unsigned long long nb)
+int	ft_printhexaupp(unsigned int n)
 {
-	int	counter;
+	int					counter;
+	unsigned long int	nb;
 
 	counter = 0;
-	if (nb == 0)
-	{
-		write(1, "(nil)", 5);
-		counter = 5;
-		return (counter);
-	}
-	else
-	{
-		counter += write(1, "0x", 2);
-		counter += ft_printptr(nb);
-	}
+	nb = n;
+	ft_hexaupp_recursive(nb, &counter);
 	return (counter);
 }

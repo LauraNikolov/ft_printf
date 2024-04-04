@@ -1,51 +1,44 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: lnicolof <lnicolof@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/11/23 16:03:34 by lnicolof          #+#    #+#              #
-#    Updated: 2023/12/13 18:36:54 by lnicolof         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME = libftprintf.a
 
+SRC_DIR = src
 FILES = ft_parse.c \
-	ft_printchar.c \
-	ft_printdeci.c \
-	ft_printf.c \
-	ft_printhexalow.c \
-	ft_printhexaupp.c \
-	ft_printstr.c \
-	ft_printint.c \
-	ft_printunsignedeci.c \
-	ft_ptrisnull.c \
-	ft_putchar.c \
-	
+    ft_printchar.c \
+    ft_printdeci.c \
+    ft_printf.c \
+    ft_printhexalow.c \
+    ft_printhexaupp.c \
+    ft_printstr.c \
+    ft_printint.c \
+    ft_printunsignedeci.c \
+    ft_ptrisnull.c \
+    ft_putchar.c
+
 ARRC = ar rc
 COMPIL = cc
 
 FLAGS = -Wall -Wextra -Werror
 
-OBJS = ${FILES:.c=.o}
+OBJS = $(addprefix $(SRC_DIR)/, $(FILES:.c=.o))
 
-%.o: %.c
-		${COMPIL} ${FLAGS} -c $< -o $@
-		
-${NAME} : ${OBJS}
-		${ARRC} ${NAME} ${OBJS}
-		
-all : ${NAME}
+GREEN = \033[0;32m
+NC = \033[0m
 
-clean :
-		rm -f ${OBJS}
+$(SRC_DIR)/%.o: $(SRC_DIR)/%.c
+	$(COMPIL) $(FLAGS) -c $< -o $@
+	@echo "$(GREEN)Compiled $<$(NC)"
 
-fclean :
-		rm -f ${NAME}
-		rm -f ${OBJS}
-		
-re : fclean all
+$(NAME): $(OBJS)
+	$(ARRC) $(NAME) $(OBJS)
+	@echo "$(GREEN)$(NAME) has been created successfully$(NC)"
 
-.PHONY : all clean fclean re
+all: $(NAME)
+
+clean:
+	rm -f $(OBJS)
+
+fclean: clean
+	rm -f $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re

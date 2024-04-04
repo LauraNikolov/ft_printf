@@ -1,40 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printunsignedeci.c                              :+:      :+:    :+:   */
+/*   ft_printhexalow.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lnicolof <lnicolof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 13:11:15 by lnicolof          #+#    #+#             */
-/*   Updated: 2023/12/13 18:27:09 by lnicolof         ###   ########.fr       */
+/*   Created: 2023/11/24 13:15:24 by lnicolof          #+#    #+#             */
+/*   Updated: 2024/04/04 13:31:46 by lnicolof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
-int	ft_printunsignedeci_recursive(unsigned long nb, int *counter)
+static int	ft_hexalow_recursive(long nb, int *counter)
 {
-	if (nb > 9)
+	char	*base;
+
+	base = "0123456789abcdef";
+	if (nb < 0)
 	{
-		ft_printunsignedeci_recursive(nb / 10, counter);
-		ft_printunsignedeci_recursive(nb % 10, counter);
+		ft_putchar('-');
+		(*counter)++;
+		nb *= -1;
+	}
+	if (nb > 15)
+	{
+		ft_hexalow_recursive(nb / 16, counter);
+		ft_hexalow_recursive(nb % 16, counter);
 	}
 	else
 	{
-		nb = nb + '0';
-		ft_putchar(nb);
+		ft_putchar(base[nb]);
 		(*counter)++;
 	}
 	return (*counter);
 }
 
-int	ft_printunsigneddeci(unsigned int n)
+int	ft_printhexalow(unsigned int n)
 {
-	int				counter;
-	unsigned long	nb;
+	int					counter;
+	unsigned long int	nb;
 
 	counter = 0;
 	nb = n;
-	ft_printunsignedeci_recursive(nb, &counter);
+	ft_hexalow_recursive(nb, &counter);
 	return (counter);
 }
